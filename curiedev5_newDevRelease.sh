@@ -8,7 +8,7 @@
 # @param $1 - versionName
 function incrementVersion(){
 	if [[ $# -ne 1 ]]; then
-		echo "Error - IncorrectNumberOfArguments: incrementVersion() should take a single argument as input e.g. 'curiedev5_version_2'"
+		echo "Error - IncorrectNumberOfArguments: incrementVersion() should take a single argument as input e.g. 'curiedev5_2'"
 		return 1
 	fi
 
@@ -79,7 +79,7 @@ function createEfsLink(){
 	echo "complete(release) - $releaseName -> $nextReleaseName"
 	echo
 
-	copyFilesToSrc $nextReleaseName
+	copyFilesToSrc $1 $2
 }
 
 # Copies the first file found in /home/$USER/ - inside src folder
@@ -97,9 +97,10 @@ function copyFilesToSrc(){
 		$(cp $firstFile /home/$USER/efs_release_links/curiedev5_1/src/)
 		echo "File:'"$firstFile"' - copied to '/home/$USER/efs_release_links/curiedev5_1/src/'"
 
-		# TODO: uncomment these two versions for final version. - changes fixed 'curiedev5_1' to the new releasename
+		# TODO: uncomment these two lines for final version. - changes fixed 'curiedev5_1' to the new releasename
 		# $(cp $firstFile /home/$USER/$1/$2/$releaseName/src/)
 		# echo "File:'"$firstFile"' - copied to '/home/$USER/$1/$2/$releaseName/src/'"
+		echo "JAAAAAAAAAAAA copyFilesToSrc" $releaseName
 	else
 		echo "Error - copyFilesToSrc(): No files found to copy in /home/$USER/"
 	fi
