@@ -26,4 +26,6 @@ if [[ $# -ne 2 ]]; then
 	return 1
 fi
 
+createProdRelease
+
 ######### END main
